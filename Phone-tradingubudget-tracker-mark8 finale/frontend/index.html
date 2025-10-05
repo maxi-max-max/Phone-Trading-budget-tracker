@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Flipper Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header-card">
+            <div class="header-content">
+                <div>
+                    <h1 class="gradient-text">Phone Flipper Dashboard</h1>
+                    <p class="subtitle">Manage your phone flipping business like a pro</p>
+                </div>
+                <div class="budget-section">
+                    <div class="budget-header">
+                        <span class="budget-label">Current Budget</span>
+                        <button id="settings-btn" class="icon-btn" aria-label="Update budget">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M12 1v6m0 6v6m-6-6h6m6 0h-6"></path>
+                                <path d="M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24m0-12.73l-4.24 4.24m-5.66 5.66L4.93 19.07"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="budget-amount" class="budget-amount">$0.00</div>
+                </div>
+            </div>
+
+            <!-- Budget Update Form (hidden by default) -->
+            <div id="budget-form" class="budget-form hidden">
+                <h3>Update Budget</h3>
+                <div class="form-row">
+                    <input type="number" id="budget-input" placeholder="Enter new budget amount" step="0.01">
+                    <button id="update-budget-btn" class="btn btn-primary">Update</button>
+                    <button id="cancel-budget-btn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div>
+                        <p class="stat-label">Total Phones</p>
+                        <p id="stat-total" class="stat-value">0</p>
+                    </div>
+                    <div class="stat-icon blue">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12" y2="18"></line>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div>
+                        <p class="stat-label">Phones Sold</p>
+                        <p id="stat-sold" class="stat-value green">0</p>
+                    </div>
+                    <div class="stat-icon green">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div>
+                        <p class="stat-label">Total Profit</p>
+                        <p id="stat-profit" class="stat-value">$0.00</p>
+                    </div>
+                    <div class="stat-icon purple">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div>
+                        <p class="stat-label">Lost to Scams</p>
+                        <p id="stat-lost" class="stat-value red">$0.00</p>
+                    </div>
+                    <div class="stat-icon red">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
+                            <polyline points="17 18 23 18 23 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phones Section Header -->
+        <div class="section-header">
+            <h2>Your Phones</h2>
+            <button id="add-phone-btn" class="btn btn-gradient">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Add Phone
+            </button>
+        </div>
+
+        <!-- Add Phone Form (hidden by default) -->
+        <div id="add-phone-form" class="form-card hidden">
+            <h3>Add New Phone</h3>
+            <div class="form-grid">
+                <input type="text" id="phone-brand" placeholder="Brand (e.g., Apple, Samsung)" required>
+                <input type="text" id="phone-model" placeholder="Model (e.g., iPhone 13)" required>
+                <input type="number" id="phone-price" placeholder="Buy Price" step="0.01" required>
+                <input type="text" id="phone-notes" placeholder="Notes (optional)">
+            </div>
+            <div class="form-actions">
+                <button id="submit-phone-btn" class="btn btn-success">Add Phone</button>
+                <button id="cancel-phone-btn" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Phones Grid -->
+        <div id="phones-grid" class="phones-grid"></div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-state hidden">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12" y2="18"></line>
+            </svg>
+            <h3>No phones yet</h3>
+            <p>Add your first phone to start tracking your business!</p>
+            <button id="get-started-btn" class="btn btn-gradient">Get Started</button>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
+
+
