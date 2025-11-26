@@ -22,4 +22,4 @@ EXPOSE 5000
 
 # Run the app using Gunicorn (Production Server)
 # Pointing to app inside backend folder
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "backend.app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "backend.app:create_app()"]
