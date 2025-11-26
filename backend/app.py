@@ -6,14 +6,19 @@ import logic
 from prometheus_flask_exporter import PrometheusMetrics
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
 
+# --- 1. Define metrics GLOBALLY ---
+metrics = PrometheusMetrics.for_app_factory()
+
+# --- 2. Register static info ONCE (Global Scope) ---
+# This prevents the "Duplicated timeseries" error during tests
+metrics.info('app_info', 'Application info', version='1.0.0')
+
 def create_app(test_config=None):
     app = Flask(__name__, static_folder='../frontend', static_url_path='')
 
-    # Metrics Setup 
-    metrics = PrometheusMetrics(app, path=None) 
+    # --- 3. Connect metrics to this specific app instance ---
+    metrics.init_app(app)
     
-    metrics.info('app_info', 'Application info', version='1.0.0')
-
     # Configuration
     if test_config:
         app.config.update(test_config)
