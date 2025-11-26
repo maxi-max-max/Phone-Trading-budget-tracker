@@ -3,17 +3,13 @@ from flask_cors import CORS
 from database import db
 from models import Phone, Budget
 import logic
-
-# --- NEW IMPORTS ---
 from prometheus_flask_exporter import PrometheusMetrics
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
 
 def create_app(test_config=None):
     app = Flask(__name__, static_folder='../frontend', static_url_path='')
 
-    # --- THE FIX ---
-    # 1. Initialize metrics but DISABLE the default route (path=None)
-    #    so we can create it manually without conflicts.
+    # Metrics Setup 
     metrics = PrometheusMetrics(app, path=None) 
     
     metrics.info('app_info', 'Application info', version='1.0.0')
@@ -31,11 +27,8 @@ def create_app(test_config=None):
 
     # --- Routes ---
 
-    # 2. MANUALLY Define the Metrics Route (The "Nuclear Option")
-    #    This forces the route to exist, no matter what.
     @app.route('/metrics')
     def metrics_endpoint():
-        # Returns the data directly from the Prometheus engine
         return generate_latest(), 200, {'Content-Type': CONTENT_TYPE_LATEST}
 
     # Health Check
