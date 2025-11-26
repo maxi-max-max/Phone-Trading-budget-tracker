@@ -1,0 +1,28 @@
+============================= test session starts =============================
+platform win32 -- Python 3.9.13, pytest-8.4.2, pluggy-1.6.0
+rootdir: C:\Users\maxim\Documents\Phone-tradingubudget-tracker-mark9\backend
+plugins: cov-7.0.0
+collected 3 items
+
+test\test_app.py ...                                                     [100%]
+
+============================== warnings summary ===============================
+test/test_app.py::test_sell_phone_profit
+  C:\Users\maxim\Documents\Phone-tradingubudget-tracker-mark9\.venv\lib\site-packages\flask_sqlalchemy\query.py:30: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    rv = self.get(ident)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.9.13-final-0 _______________
+
+Name               Stmts   Miss  Cover   Missing
+------------------------------------------------
+app.py                71     21    70%   14-15, 41-42, 83-91, 95-101, 113, 117, 123-126
+database.py            4      0   100%
+logic.py              62     17    73%   42, 47, 66-78, 99-111
+models.py             19      0   100%
+test\conftest.py      15      0   100%
+test\test_app.py      22      0   100%
+------------------------------------------------
+TOTAL                193     38    80%
+======================== 3 passed, 1 warning in 0.28s =========================
