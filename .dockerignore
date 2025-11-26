@@ -1,0 +1,7 @@
+.git
+.venv
+__pycache__
+*.pyc
+backend/tests
+backend/coverage_report.txt
+.pytest_cache
