@@ -30,6 +30,9 @@ def create_app(test_config=None):
     CORS(app, resources={r"/api/*": {"origins": "*"}})
     db.init_app(app)
 
+    with app.app_context():
+        db.create_all()
+
     # --- Routes ---
 
     @app.route('/metrics')
@@ -127,6 +130,4 @@ def create_app(test_config=None):
 
 if __name__ == '__main__':
     app = create_app()
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
