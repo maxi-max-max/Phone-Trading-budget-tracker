@@ -1,0 +1,32 @@
+============================= test session starts =============================
+platform win32 -- Python 3.9.13, pytest-8.4.2, pluggy-1.6.0 -- C:\Users\maxim\Documents\Phone-tradingubudget-tracker-mark9\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\maxim\Documents\Phone-tradingubudget-tracker-mark9
+plugins: cov-7.0.0
+collecting ... collected 3 items
+
+backend/test/test_app.py::test_budget_initialization PASSED              [ 33%]
+backend/test/test_app.py::test_add_phone_flow PASSED                     [ 66%]
+backend/test/test_app.py::test_sell_phone_profit PASSED                  [100%]
+
+============================== warnings summary ===============================
+backend/test/test_app.py::test_sell_phone_profit
+  C:\Users\maxim\Documents\Phone-tradingubudget-tracker-mark9\.venv\lib\site-packages\flask_sqlalchemy\query.py:30: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    rv = self.get(ident)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.9.13-final-0 _______________
+
+Name                       Stmts   Miss  Cover   Missing
+--------------------------------------------------------
+backend\app.py                83     21    75%   26-27, 40, 46, 70-71, 98-103, 107-111, 123, 127, 132-133
+backend\database.py            4      0   100%
+backend\logic.py              62     17    73%   42, 47, 66-78, 99-111
+backend\models.py             19      0   100%
+backend\test\conftest.py      15      0   100%
+backend\test\test_app.py      22      0   100%
+--------------------------------------------------------
+TOTAL                        205     38    81%
+Coverage HTML written to dir htmlcov
+======================== 3 passed, 1 warning in 0.68s =========================
